@@ -1,0 +1,128 @@
+@use "sass:math";
+
+$utilities: (
+  "padding": (
+    "prefix": "p",
+    "baseValue": $base-padding,
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 3,
+    ),
+  ),
+  "padding-top": (
+    "prefix": "pt",
+    "baseValue": $base-padding,
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 3,
+    ),
+  ),
+  "padding-right": (
+    "prefix": "pr",
+    "baseValue": $base-padding,
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 3,
+    ),
+  ),
+  "padding-bottom": (
+    "prefix": "pb",
+    "baseValue": $base-padding,
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 3,
+    ),
+  ),
+  "padding-left": (
+    "prefix": "pl",
+    "baseValue": $base-padding,
+    "values": (
+      "0": 0,
+      "1": $base-padding,
+      "2": $base-padding * 2,
+      "3": $base-padding * 3,
+    ),
+  ),
+  "margin": (
+    "prefix": "m",
+    "baseValue": $base-margin,
+    "values": (
+      "0": 0,
+      "1": $base-margin,
+      "2": $base-margin * 2,
+      "3": $base-margin * 3,
+    ),
+  ),
+  "margin-top": (
+    "prefix": "mt",
+    "baseValue": $base-margin,
+    "values": (
+      "0": 0,
+      "1": $base-margin,
+      "2": $base-margin * 2,
+      "3": $base-margin * 3,
+    ),
+  ),
+  "margin-bottom": (
+    "prefix": "mb",
+    "baseValue": $base-margin,
+    "values": (
+      "0": 0,
+      "1": $base-margin,
+      "2": $base-margin * 2,
+      "3": $base-margin * 3,
+    ),
+  ),
+  "margin-right": (
+    "prefix": "mr",
+    "baseValue": $base-margin,
+    "values": (
+      "0": 0,
+      "1": $base-margin,
+      "2": $base-margin * 2,
+      "3": $base-margin * 3,
+    ),
+  ),
+  "margin-left": (
+    "prefix": "ml",
+    "baseValue": $base-margin,
+    "values": (
+      "0": 0,
+      "1": $base-margin,
+      "2": $base-margin * 2,
+      "3": $base-margin * 3,
+    ),
+  ),
+);
+
+@each $property, $map in $utilities {
+  $prefix: map-get($map, "prefix");
+  $values: map-get($map, "values");
+  $base: map-get($map, "baseValue");
+
+  @for $i from 0 through 9 {
+    @if ($i == 0) {
+      .#{$prefix}-#{$i} {
+        #{$property}: 0;
+      }
+    } @else {
+      .#{$prefix}-#{$i} {
+        #{$property}: $base * math.div($i, 2);
+      }
+    }
+  }
+
+  // @each $k, $v in $values {
+  //   .#{$prefix}-#{$k} {
+  //     #{$property}: $v;
+  //   }
+  // }
+}

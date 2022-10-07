@@ -1,0 +1,21 @@
+%flex-layout {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar {
+  > .container {
+    @extend %flex-layout;
+  }
+  padding: $base-padding $base-padding * 2;
+  box-shadow: $base-box-shadow;
+}
+
+@each $key, $value in $colors {
+  .navbar-#{$key} {
+    @extend .navbar;
+    background-color: $value;
+  }
+}
